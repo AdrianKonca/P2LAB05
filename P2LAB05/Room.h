@@ -6,6 +6,10 @@ class Room
 	std::string description;
 	int x;
 	int y;
+	static int minX;
+	static int maxX;
+	static int minY;
+	static int maxY;
 	Room *neighborN;
 	Room *neighborW;
 	Room *neighborE;
@@ -19,7 +23,9 @@ public:
 	Room *getNeighborS()			{ return neighborS; };
 	bool hasItem()					{ return (item != nullptr); };
 	Item *getItem()					{ return item; };
-	Room();
+
+	static void assignNeighbors(std::vector <Room*> rooms);
+	Room(int x, int y);
 	~Room();
 };
 
