@@ -79,6 +79,7 @@ char* Room::createMap(std::vector <Room*> &rooms)
 	for (auto i = 1; i <= verticalSpread; i++)
 	{
 		map[horizontalSpread * i - 1] = '\n';
+
 	}
 	map[horizontalSpread * verticalSpread] = '\0';
 	return map;
