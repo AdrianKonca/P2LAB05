@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Room.h"
-int Room::minX = 0;
+int Room::minX;
 int Room::minY;
 int Room::maxX;
 int Room::maxY;
@@ -33,7 +33,7 @@ Room::~Room()
 {
 }
 
-Room* Room::findRoomByCoordinates(std::vector <Room*> rooms, int x, int y)
+Room* Room::findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y)
 {
 	
 	//sanity checks
@@ -42,7 +42,7 @@ Room* Room::findRoomByCoordinates(std::vector <Room*> rooms, int x, int y)
 		return nullptr;
 	}
 
-	for (Room* room : rooms)
+	for (auto room : rooms)
 	{
 		if (room->x == x && room->y == y)
 		{
@@ -53,15 +53,18 @@ Room* Room::findRoomByCoordinates(std::vector <Room*> rooms, int x, int y)
 	return nullptr;
 }
 
-void assignNeighbors(Room* room)
+void Room::assignNeighbors(std::vector <Room*> &rooms, Room* &room)
 {
-
+	room->getNeighborN = findRoomByCoordinates(rooms, this->x, this->y - 1);
+	room->getNeighborW = findRoomByCoordinates(rooms, this->x - 1, this->y);
+	room->getNeighborE = findRoomByCoordinates(rooms, this->x + 1, this->y);
+	room->getNeighborS = findRoomByCoordinates(rooms, this->x, this->y + 1);
 }
 
-void Room::assignNeighbors(std::vector <Room*> rooms)
+void Room::assignNeighbors(std::vector <Room*> &rooms)
 {
-
-
-
-
+	for (auto room : rooms)
+	{
+		room->assignNeighbors;
+	}
 }
