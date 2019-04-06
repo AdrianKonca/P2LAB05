@@ -66,3 +66,20 @@ void Room::findNeighbors(std::vector <Room*> &rooms)
 		room->assignNeighbors(rooms);
 	}
 }
+
+char* Room::createMap(std::vector <Room*> &rooms)
+{
+	int horizontalSpread = (maxX - minX + 1);
+	int verticalSpread = (maxY - minY);
+	char* map = new char[horizontalSpread * verticalSpread + 1];
+	for (auto room : rooms)
+	{
+		map[(room->x - 1) + ((room->y -1 ) * (horizontalSpread))] = '#';
+	}
+	for (auto i = 1; i <= verticalSpread; i++)
+	{
+		map[horizontalSpread * i - 1] = '\n';
+	}
+	map[horizontalSpread * verticalSpread] = '\0';
+	return map;
+}
