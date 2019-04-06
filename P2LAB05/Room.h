@@ -12,13 +12,13 @@ class Room
 	Room *neighborS;
 	Item *item;
 public:
-	std::string getDescription();
-	Room *getNeighborN();
-	Room *getNeighborS();
-	Room *getNeighborE();
-	Room *getNeighborW();
-	bool hasItem();
-	Item *getItem();
+	std::string getDescription()	{ return description; };
+	Room *getNeighborN()			{ return neighborN; };
+	Room *getNeighborW()			{ return neighborW; };
+	Room *getNeighborE()			{ return neighborE; };
+	Room *getNeighborS()			{ return neighborS; };
+	bool hasItem()					{ return (item != nullptr); };
+	Item *getItem()					{ return item; };
 	Room();
 	~Room();
 };
