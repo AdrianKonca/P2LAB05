@@ -25,8 +25,8 @@ public:
 	Item *getItem()					{ return item; };
 
 	static Room* findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y);
-	void assignNeighbors(std::vector <Room*> &rooms, Room* &room);
-	static void assignNeighbors(std::vector <Room*> &rooms);
+	void assignNeighbors(std::vector <Room*> &rooms);
+	static void findNeighbors(std::vector <Room*> &rooms);
 	Room(int x, int y);
 	~Room();
 };

@@ -27,8 +27,6 @@ Room::Room(int x, int y)
 	}
 }
 
-
-
 Room::~Room()
 {
 }
@@ -53,18 +51,18 @@ Room* Room::findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y)
 	return nullptr;
 }
 
-void Room::assignNeighbors(std::vector <Room*> &rooms, Room* &room)
+void Room::assignNeighbors(std::vector <Room*> &rooms)
 {
-	room->getNeighborN = findRoomByCoordinates(rooms, this->x, this->y - 1);
-	room->getNeighborW = findRoomByCoordinates(rooms, this->x - 1, this->y);
-	room->getNeighborE = findRoomByCoordinates(rooms, this->x + 1, this->y);
-	room->getNeighborS = findRoomByCoordinates(rooms, this->x, this->y + 1);
+	this->neighborN = findRoomByCoordinates(rooms, this->x, this->y - 1);
+	this->neighborW = findRoomByCoordinates(rooms, this->x - 1, this->y);
+	this->neighborE = findRoomByCoordinates(rooms, this->x + 1, this->y);
+	this->neighborS = findRoomByCoordinates(rooms, this->x, this->y + 1);
 }
 
-void Room::assignNeighbors(std::vector <Room*> &rooms)
+void Room::findNeighbors(std::vector <Room*> &rooms)
 {
 	for (auto room : rooms)
 	{
-		room->assignNeighbors;
+		room->assignNeighbors(rooms);
 	}
 }
