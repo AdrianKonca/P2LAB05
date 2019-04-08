@@ -67,21 +67,53 @@ void Room::findNeighbors(std::vector <Room*> &rooms)
 	}
 }
 
-char* Room::createMap(std::vector <Room*> &rooms)
 {
 	int horizontalSpread = (maxX - minX + 2);
 	int verticalSpread = (maxY - minY + 1);
 	int horizontalOffset =  - minX;
 	int verticalOffset =  - minY;
-	char* map = new char[horizontalSpread * verticalSpread + 1];
+	std::string map = std::string(horizontalSpread * verticalSpread, ' ');
 	for (auto room : rooms)
 	{
-		map[(room->x + horizontalOffset) + ((room->y + verticalOffset) * (horizontalSpread))] = '#';
+		map[(room->x + horizontalOffset) + ((room->y + verticalOffset) * horizontalSpread)] = room->getSymbol();
+		int neighborX;
+		int neighborY;
+		if (room->getNeighborN() == nullptr)
+		{
+			neighborY = room->y + verticalOffset - 1;
+			if (neighborY >= (minY + verticalOffset))
+			{
+				map[(room->x + horizontalOffset) + (neighborY * horizontalSpread)] = 'X';
+			}
+		}
+		if (room->getNeighborS() == nullptr)
+		{
+			neighborY = room->y + verticalOffset + 1;
+			if (neighborY <= (maxY + verticalOffset))
+			{
+				map[(room->x + horizontalOffset) + (neighborY * horizontalSpread)] = 'X';
+			}
+		}
+		if (room->getNeighborW() == nullptr)
+		{
+			neighborX = room->x + horizontalOffset - 1;
+			if (neighborX >= (minX + horizontalOffset))
+			{
+				map[(neighborX) + ((room->y + verticalOffset) * horizontalSpread)] = 'X';
+			}
+		}
+		if (room->getNeighborE() == nullptr)
+		{
+			neighborX = room->x + horizontalOffset + 1;
+			if (neighborX <= (maxX + horizontalOffset))
+			{
+				map[(neighborX)+((room->y + verticalOffset) * horizontalSpread)] = 'X';
+			}
+		}
 	}
 	for (auto i = 1; i <= verticalSpread; i++)
 	{
 		map[horizontalSpread * i - 1] = '\n';
-
 	}
 	map[horizontalSpread * verticalSpread] = '\0';
 	return map;

@@ -27,7 +27,7 @@ public:
 	static Room* findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y);
 	void assignNeighbors(std::vector <Room*> &rooms);
 	static void findNeighbors(std::vector <Room*> &rooms);
-	static char* createMap(std::vector <Room*> &rooms);
+	static std::string createMap(std::vector <Room*> &rooms);
 	Room(int x, int y);
 	~Room();
 };
