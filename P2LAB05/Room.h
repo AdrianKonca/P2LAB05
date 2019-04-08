@@ -24,7 +24,6 @@ public:
 	bool hasItem()					{ return (item != nullptr); };
 	Item *getItem()					{ return item; };
 
-	static Room* findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y);
 	bool placeItem(Item* item);
 	void assignNeighbors(std::vector <Room*> &rooms);
 	char getSymbol();

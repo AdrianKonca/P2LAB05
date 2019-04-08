@@ -67,6 +67,25 @@ void Room::findNeighbors(std::vector <Room*> &rooms)
 	}
 }
 
+char Room::getSymbol()
+{
+	if (nullptr != item)
+	{
+		return item->getName()[0];
+	}
+	return '#';
+}
+
+bool Room::placeItem(Item* item)
+{
+	if (this->item)
+	{
+		return false;
+	}
+	this->item = item;
+}
+
+std::string Room::createMap(std::vector <Room*> &rooms)
 {
 	int horizontalSpread = (maxX - minX + 2);
 	int verticalSpread = (maxY - minY + 1);
