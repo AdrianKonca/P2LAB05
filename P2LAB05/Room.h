@@ -25,9 +25,14 @@ public:
 	Item *getItem()					{ return item; };
 
 	static Room* findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y);
+	bool placeItem(Item* item);
 	void assignNeighbors(std::vector <Room*> &rooms);
+	char getSymbol();
+
+	static Room* findRoomByCoordinates(std::vector <Room*> &rooms, int x, int y);
 	static void findNeighbors(std::vector <Room*> &rooms);
 	static std::string createMap(std::vector <Room*> &rooms);
+
 	Room(int x, int y);
 	~Room();
 };

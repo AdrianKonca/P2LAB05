@@ -4,7 +4,8 @@ class Item
 	std::string name;
 	int value;
 public:
-	Item();
+	std::string getName() { return name; }
+	Item(std::string name, int value);
 	~Item();
 };
 

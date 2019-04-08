@@ -2,8 +2,10 @@
 #include "Item.h"
 
 
-Item::Item()
+Item::Item(std::string name, int value)
 {
+	this->name = name;
+	this->value = value;
 }
 
 
