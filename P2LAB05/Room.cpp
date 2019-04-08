@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "Room.h"
-int Room::minX;
-int Room::minY;
-int Room::maxX;
-int Room::maxY;
+int Room::minX = INT_MAX;
+int Room::minY = INT_MAX;
+int Room::maxX = INT_MIN;
+int Room::maxY = INT_MIN;
 
 Room::Room(int x, int y)
 {
@@ -69,12 +69,14 @@ void Room::findNeighbors(std::vector <Room*> &rooms)
 
 char* Room::createMap(std::vector <Room*> &rooms)
 {
-	int horizontalSpread = (maxX - minX + 1);
-	int verticalSpread = (maxY - minY);
+	int horizontalSpread = (maxX - minX + 2);
+	int verticalSpread = (maxY - minY + 1);
+	int horizontalOffset =  - minX;
+	int verticalOffset =  - minY;
 	char* map = new char[horizontalSpread * verticalSpread + 1];
 	for (auto room : rooms)
 	{
-		map[(room->x - 1) + ((room->y -1 ) * (horizontalSpread))] = '#';
+		map[(room->x + horizontalOffset) + ((room->y + verticalOffset) * (horizontalSpread))] = '#';
 	}
 	for (auto i = 1; i <= verticalSpread; i++)
 	{
