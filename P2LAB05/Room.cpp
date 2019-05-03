@@ -69,7 +69,7 @@ void Room::findNeighbors(std::vector <Room*> &rooms)
 
 char Room::getSymbol()
 {
-	if (nullptr != item)
+	if (nullptr != item && item->wasSeen())
 	{
 		return item->getName()[0];
 	}
